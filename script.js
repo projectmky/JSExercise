@@ -1,17 +1,18 @@
-const url = 'https://reqres.in/api/users'
+const url = 'https://reqres.in/api/users/4'
 
 
 // fetch(url)
 // .then(response => response.json())
-// .then(result => console.log(result.data[3]))
+// .then(result => result.data)
 
 async function getData() {
     try {
         let response = await fetch(url);
-        let data = await response.json();
-        let array = await data.data;
-        let obj = array[3];
-     //   console.log(obj)
+ 
+        let fetchData = await response.json();
+        console.log(fetchData)
+         let obj = fetchData.data;
+       console.log(obj)
        
         const body = document.getElementsByTagName('body')[0]; 
         const heading =  document.createElement("h2")
@@ -20,7 +21,7 @@ async function getData() {
         const userAvatar = document.createElement("h2")
 
         heading.innerHTML=`User Info`
-        userObj.innerHTML = `Data : ${JSON.stringify(obj)}`
+        userObj.innerHTML = `Data : ${JSON.stringify(fetchData)}`
         userAvatar.innerHTML = obj.first_name + " " + obj.last_name 
         body.append(heading)
         body.append(userObj)
@@ -65,4 +66,4 @@ async function sendData() {
     }
 }
 
-console.log(sendData())
+//console.log(sendData())
